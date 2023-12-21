@@ -42,8 +42,16 @@
   flex-direction: column;
 }
 
+.card22>textarea{
+  resize: none;
+}
+
 
 .logo{
   display: flex;
   align-items: center;
+}
+
+.card11>textarea{
+  resize: none;
 }

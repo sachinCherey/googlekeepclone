@@ -52,7 +52,7 @@ const NoteList = () => {
               style={{ backgroundColor: note.color }}
             >
               {editIndex === index ? (
-                <div>
+                <div className='card11'>
                   <input
                     type="text"
                     name="title"
@@ -73,7 +73,7 @@ const NoteList = () => {
                   <button onClick={handleEditCancel}>Cancel</button>
                 </div>
               ) : (
-                <div>
+                <div className='card11'>
                   <h3>{note.title}</h3>
                   <p>{note.description}</p>
                   <button onClick={() => handleDeleteClick(index)}>Delete</button>
