@@ -4,7 +4,7 @@ import { useNotes } from './NotesContext';
 const NoteList = () => {
   const { notes, deleteNote, editNote } = useNotes();
   const [editIndex, setEditIndex] = useState(null);
-  const [editedNote, setEditedNote] = useState({ title: '', description: '' });
+  const [editedNote, setEditedNote] = useState({ title: '', description: '', color: '' });
 
   const handleDeleteClick = (index) => {
     deleteNote(index);
@@ -32,7 +32,13 @@ const NoteList = () => {
     }));
   };
 
-  
+  const handleColorChange = (e, index) => {
+    const { value } = e.target;
+    setEditedNote((prevNote) => ({
+      ...prevNote,
+      color: value,
+    }));
+  };
 
   return (
     <div>
@@ -40,7 +46,11 @@ const NoteList = () => {
       {notes.length > 0 ? (
         <div className="card-container1">
           {notes.map((note, index) => (
-            <div key={index} className="card1">
+            <div
+              key={index}
+              className="card1"
+              style={{ backgroundColor: note.color }}
+            >
               {editIndex === index ? (
                 <div>
                   <input
@@ -53,6 +63,11 @@ const NoteList = () => {
                     name="description"
                     value={editedNote.description}
                     onChange={handleInputChange}
+                  />
+                  <input
+                    type="color"
+                    value={editedNote.color}
+                    onChange={(e) => handleColorChange(e, index)}
                   />
                   <button onClick={() => handleEditSave(index)}>Save</button>
                   <button onClick={handleEditCancel}>Cancel</button>
